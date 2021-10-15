@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  app-spp:
+    container_name: app-spp
+    hostname: app-spp
+    build: ./Docker/App
+    ports:
+      - 98:80
+      - 9010:9001
+    volumes:
+      - ./:/var/www/app
+    restart: unless-stopped

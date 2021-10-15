@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.020361">
+    <testsuite name="unit" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.020361">
+      <testsuite name="Tests\Unit\ValidatorsTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/ValidatorsTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.015627">
+        <testcase name="testDateValidator" class="Tests\Unit\ValidatorsTest" classname="Tests.Unit.ValidatorsTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/ValidatorsTest.php" line="36" assertions="1" time="0.006185"/>
+        <testcase name="testDateValidateFormat" class="Tests\Unit\ValidatorsTest" classname="Tests.Unit.ValidatorsTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/ValidatorsTest.php" line="26" assertions="1" time="0.003996"/>
+        <testcase name="testDateValidatorException" class="Tests\Unit\ValidatorsTest" classname="Tests.Unit.ValidatorsTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/ValidatorsTest.php" line="44" assertions="1" time="0.005445"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\RentServiceTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/RentServiceTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.004734">
+        <testsuite name="Tests\Unit\RentServiceTest::testProcessData" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.004734">
+          <testcase name="testProcessData with data set #0" class="Tests\Unit\RentServiceTest" classname="Tests.Unit.RentServiceTest" file="/home/nzolt/Desktop/Code/sportsp/Tests/unit/RentServiceTest.php" line="24" assertions="1" time="0.004734"/>
+        </testsuite>
+      </testsuite>
+    </testsuite>
+  </testsuite>
+</testsuites>
