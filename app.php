@@ -17,6 +17,7 @@ $climate->out('Or just hit ENTER for default "./data.csv"');
 $input->defaultTo(__DIR__ . '/data.csv');
 $csvFilename = $input->prompt();
 
+$detailsBool = false;
 $options  = [
     'details' => 'Generate details',
     'file' => 'Write to file',
@@ -28,7 +29,8 @@ $details = $input->prompt();
 
 $csvFileOut = '';
 $returnSelect = 'No';
-if(in_array('file', $details)){
+if(in_array('details', $details)){
+    $detailsBool = true;
     $climate->info('The keyboard arrows to navigate, spacebar to select an item.');
     $options  = ['Yes', 'No'];
     $input    = $climate->checkboxes('View result details in terminal:', $options);
@@ -36,13 +38,15 @@ if(in_array('file', $details)){
     if(count($return)){
         $returnSelect = $return[0];
     }
+}
+if(in_array('file', $details)){
     $output = $climate->input('Path and filename for output data: ');
     $climate->out('Default output to: ./data.csv');
     $output->defaultTo('rent-report.csv');
     $csvFileOut = $output->prompt();
 }
 
-$rents = RentCalculatorFacade::calculate($csvFilename, $csvFileOut, $details, $returnSelect);
+$rents = RentCalculatorFacade::calculate($csvFilename, $csvFileOut, $detailsBool, $returnSelect);
 if($returnSelect == 'Yes'){
     $climate->table($rents['details']);
 }

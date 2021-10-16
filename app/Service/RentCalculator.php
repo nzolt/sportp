@@ -18,10 +18,9 @@ class RentCalculator extends RentCalculatorAbstract implements RentCalculatorInt
      * @return array
      * @throws InvalidFileException
      */
-    public function calculate(string $filenameIn, string $filenameOut = '', array $details = [], string $return = ''): array
+    public function calculate(string $filenameIn, string $filenameOut = '', bool $details = false, string $return = ''): array
     {
         $rents = $this->loadData($filenameIn);
-        $details = in_array('details', $details);
         list($detailsByBikes, $totalAvg) = $this->processData($rents, $details);
 
         // Prepare details
@@ -35,7 +34,7 @@ class RentCalculator extends RentCalculatorAbstract implements RentCalculatorInt
             }
         }
 
-        if($details) {
+        if($return == 'Yes' && $filenameOut != '') {
             $this->writeToFile($rentCli, $filenameOut);
         }
 
@@ -75,6 +74,7 @@ class RentCalculator extends RentCalculatorAbstract implements RentCalculatorInt
      */
     public function processData(array $rents, bool $details = false): array
     {
+        $totalRentTimes = [];
         $rentAvgByBikes = [];
         $rentAvgByBike = [];
         foreach($rents as $bId => $bike){
@@ -85,7 +85,8 @@ class RentCalculator extends RentCalculatorAbstract implements RentCalculatorInt
         }
 
         foreach ($rentTimes as $bId => $bikeRentTimes){
-            $rentAvgByBike[$bId] = array_sum($bikeRentTimes)/count($bikeRentTimes);
+            //$rentAvgByBike[$bId] = array_sum($bikeRentTimes)/count($bikeRentTimes);
+            $totalRentTimes = array_merge($totalRentTimes, $bikeRentTimes);
             if($details){
                 $rentAvgByBikes[$bId] = $this->getAvg($bikeRentTimes)->format('%H:%i:%s');
             }
@@ -93,7 +94,7 @@ class RentCalculator extends RentCalculatorAbstract implements RentCalculatorInt
 
         return [
             $rentAvgByBikes,
-            $this->getAvg($rentAvgByBike)->format('%H:%i:%s')
+            $this->getAvg($totalRentTimes)->format('%H:%i:%s')
             ];
     }
 
